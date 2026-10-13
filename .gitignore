@@ -1,0 +1,21 @@
+# venv/: no se sube el entorno virtual completo, cada quien crea el suyo con requirements.txt
+venv/
+# .env: el archivo con tus contraseñas reales, nunca debe llegar a GitHub
+.env
+# __pycache__/: archivos compilados que Python genera solo, no son código fuente
+__pycache__/
+staticfiles/
+
+# Archivos de bases de datos locales
+*.sqlite3
+*.sqlite3-journal
+
+# Respaldos del proyecto
+*.bak
+respaldo_u3s5_*/
+
+# Credenciales y claves privadas
+.env.*
+!.env.example
+*.pem
+*.key

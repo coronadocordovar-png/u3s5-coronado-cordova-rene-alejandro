@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Servicios</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="max-w-4xl mx-auto py-10 px-6">
+
+  <h1 class="text-2xl font-bold mb-6">Servicios</h1>
+
+  <div class='my-4'>
+  {% if user.is_authenticated %}
+  <a href='{% url 'crear_servicio' %}' class='bg-green-600 text-white px-4 py-2 rounded'>Crear servicio</a>
+  {% endif %}
+</div>
+<table class="w-full border border-slate-200 rounded-lg overflow-hidden">
+    <thead class="bg-slate-100">
+      <tr>
+        <th class="text-left px-4 py-2">Servicio</th>
+        <th class="text-left px-4 py-2">Descripción</th>
+        <th class="text-left px-4 py-2">Categoría</th>
+        <th class="text-left px-4 py-2">Precio</th>
+        <th class="text-left px-4 py-2">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for servicio in servicios %}
+      <tr class="border-t border-slate-200">
+        <td class="px-4 py-2">{{ servicio.titulo }}</td>
+        <td class="px-4 py-2">{{ servicio.descripcion }}</td>
+        <td class="px-4 py-2">{{ servicio.categoria }}</td>
+        <td class="px-4 py-2">${{ servicio.precio }}</td>
+        <td class="px-4 py-2">
+          {% if user.is_authenticated %}
+          <a href="{% url 'editar_servicio' servicio.pk %}" class="text-blue-600 mr-3">Editar</a>
+          <a href="{% url 'eliminar_servicio' servicio.pk %}" class="text-red-600">Eliminar</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      <tr class="border-t border-slate-200">
+        <td colspan="5" class="px-4 py-4 text-center">
+          No hay servicios registrados.
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</body>
+</html>
+
+
